@@ -22,6 +22,14 @@
       {
         "command": "timestampFormatter.disable",
         "title": "Disable Timestamp Formatter"
+      },
+      {
+        "command": "timestampFormatter.enableBase64",
+        "title": "Enable Base64 Decoder"
+      },
+      {
+        "command": "timestampFormatter.disableBase64",
+        "title": "Disable Base64 Decoder"
       }
     ],
     "configuration": {
@@ -47,11 +55,28 @@
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
-    "pretest": "npm run compile"
+    "pretest": "npm run compile",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
   },
   "devDependencies": {
+    "@types/jest": "^29.5.11",
     "@types/node": "^20.x",
     "@types/vscode": "^1.85.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.1",
     "typescript": "^5.3.0"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "roots": ["<rootDir>/src"],
+    "testMatch": ["**/__tests__/**/*.test.ts"],
+    "collectCoverageFrom": [
+      "src/**/*.ts",
+      "!src/test/**",
+      "!src/**/*.test.ts"
+    ]
   }
 }

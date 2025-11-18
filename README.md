@@ -1,6 +1,6 @@
 # Timestamp Hover Formatter
 
-A VSCode extension that automatically formats timestamps into readable time when you hover over them.
+A VSCode extension that automatically formats timestamps and decodes Base64 strings when you hover over them.
 
 ## Features
 
@@ -8,22 +8,40 @@ A VSCode extension that automatically formats timestamps into readable time when
 - 🌍 Display multiple timezones simultaneously
 - ⚙️ Configurable time format
 - 🎯 View formatted time on hover
+- 🔓 Automatically detect and decode Base64 strings
+- 🎨 Color-coded displays for different data types
 
 ## Usage
+
+### Timestamp Formatting
 
 1. Hover your mouse over any 10-13 digit timestamp
 2. Automatically displays formatted time information
 
-### Commands
-
-You can enable or disable the extension using these commands (press `Ctrl+Shift+P` or `Cmd+Shift+P` to open command palette):
-
-- **Enable Timestamp Formatter** - Enable timestamp hover formatting
-- **Disable Timestamp Formatter** - Disable timestamp hover formatting
-
 Example timestamps:
 - `1700000000` (seconds timestamp)
 - `1700000000000` (milliseconds timestamp)
+
+### Base64 Decoding
+
+1. Hover your mouse over any Base64 encoded string (minimum 8 characters)
+2. Automatically displays decoded content if it's readable text
+
+Example Base64 strings:
+- `SGVsbG8gV29ybGQh` → "Hello World!"
+- `eyJuYW1lIjoiSm9obiJ9` → {"name":"John"}
+
+### Commands
+
+You can enable or disable features using these commands (press `Ctrl+Shift+P` or `Cmd+Shift+P` to open command palette):
+
+**Timestamp Formatter:**
+- **Enable Timestamp Formatter** - Enable timestamp hover formatting
+- **Disable Timestamp Formatter** - Disable timestamp hover formatting
+
+**Base64 Decoder:**
+- **Enable Base64 Decoder** - Enable Base64 hover decoding
+- **Disable Base64 Decoder** - Disable Base64 hover decoding
 
 ## Configuration
 
@@ -61,7 +79,7 @@ Format examples:
 
 ## Development and Debugging
 
-### Install Dependenciesall Dependencies
+### Install Dependencies
 
 ```bash
 npm install
