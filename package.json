@@ -3,13 +3,13 @@
   "displayName": "Hover Format Tools",
   "description": "Hover to format timestamps and decode Base64 strings - support multiple timezones and configurable formats",
   "version": "0.0.1",
-  "publisher": "your-publisher-name",
+  "publisher": "PuAlbert",
   "author": {
-    "name": "Your Name"
+    "name": "PuAlbert"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/timestamp-hover-formatter"
+    "url": "https://github.com/PuAlbert/hover-format-tools"
   },
   "keywords": [
     "timestamp",
@@ -56,7 +56,10 @@
       "properties": {
         "timestampFormatter.timezones": {
           "type": "array",
-          "default": ["UTC", "Asia/Shanghai"],
+          "default": [
+            "UTC",
+            "Asia/Shanghai"
+          ],
           "description": "List of timezones (supports multiple timezones). Examples: UTC, Asia/Shanghai, America/New_York",
           "items": {
             "type": "string"
@@ -90,8 +93,12 @@
   "jest": {
     "preset": "ts-jest",
     "testEnvironment": "node",
-    "roots": ["<rootDir>/src"],
-    "testMatch": ["**/__tests__/**/*.test.ts"],
+    "roots": [
+      "<rootDir>/src"
+    ],
+    "testMatch": [
+      "**/__tests__/**/*.test.ts"
+    ],
     "collectCoverageFrom": [
       "src/**/*.ts",
       "!src/test/**",
