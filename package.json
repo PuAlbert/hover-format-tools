@@ -1,0 +1,47 @@
+{
+  "name": "timestamp-hover-formatter",
+  "displayName": "Timestamp Hover Formatter",
+  "description": "Format Unix timestamps on hover with configurable timezones",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "Timestamp Hover Formatter",
+      "properties": {
+        "timestampFormatter.timezones": {
+          "type": "array",
+          "default": ["UTC", "Asia/Shanghai"],
+          "description": "List of timezones (supports multiple timezones). Examples: UTC, Asia/Shanghai, America/New_York",
+          "items": {
+            "type": "string"
+          }
+        },
+        "timestampFormatter.format": {
+          "type": "string",
+          "default": "YYYY-MM-DD HH:mm:ss",
+          "description": "Time format string (YYYY=year, MM=month, DD=day, HH=hour, mm=minute, ss=second)"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile"
+  },
+  "devDependencies": {
+    "@types/node": "^20.x",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.3.0"
+  }
+}
