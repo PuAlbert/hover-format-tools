@@ -33,15 +33,15 @@ Example Base64 strings:
 
 ### Commands
 
-You can enable or disable features using these commands (press `Ctrl+Shift+P` or `Cmd+Shift+P` to open command palette):
+Open the command palette with `Ctrl+Shift+P` (Windows/Linux) or `Cmd+Shift+P` (macOS):
 
 **Timestamp Formatter:**
-- **Enable Timestamp Formatter** - Enable timestamp hover formatting
-- **Disable Timestamp Formatter** - Disable timestamp hover formatting
+- `Enable Timestamp Formatter` - Enable timestamp hover formatting
+- `Disable Timestamp Formatter` - Disable timestamp hover formatting
 
 **Base64 Decoder:**
-- **Enable Base64 Decoder** - Enable Base64 hover decoding
-- **Disable Base64 Decoder** - Disable Base64 hover decoding
+- `Enable Base64 Decoder` - Enable Base64 hover decoding
+- `Disable Base64 Decoder` - Disable Base64 hover decoding
 
 ## Configuration
 

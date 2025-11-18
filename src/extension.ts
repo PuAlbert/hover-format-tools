@@ -19,7 +19,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   // Register timestamp enable command
   const enableTimestampCommand = vscode.commands.registerCommand(
-    'timestampFormatter.enable',
+    'timestampFormatter.enableTimestamp',
     () => {
       timestampProvider.setEnabled(true);
       vscode.window.showInformationMessage('Timestamp Formatter enabled');
@@ -28,7 +28,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   // Register timestamp disable command
   const disableTimestampCommand = vscode.commands.registerCommand(
-    'timestampFormatter.disable',
+    'timestampFormatter.disableTimestamp',
     () => {
       timestampProvider.setEnabled(false);
       vscode.window.showInformationMessage('Timestamp Formatter disabled');

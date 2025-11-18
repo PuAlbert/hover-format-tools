@@ -16,11 +16,11 @@
   "contributes": {
     "commands": [
       {
-        "command": "timestampFormatter.enable",
+        "command": "timestampFormatter.enableTimestamp",
         "title": "Enable Timestamp Formatter"
       },
       {
-        "command": "timestampFormatter.disable",
+        "command": "timestampFormatter.disableTimestamp",
         "title": "Disable Timestamp Formatter"
       },
       {
