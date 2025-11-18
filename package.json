@@ -14,6 +14,16 @@
   ],
   "main": "./out/extension.js",
   "contributes": {
+    "commands": [
+      {
+        "command": "timestampFormatter.enable",
+        "title": "Enable Timestamp Formatter"
+      },
+      {
+        "command": "timestampFormatter.disable",
+        "title": "Disable Timestamp Formatter"
+      }
+    ],
     "configuration": {
       "title": "Timestamp Hover Formatter",
       "properties": {

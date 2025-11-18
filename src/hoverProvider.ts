@@ -5,11 +5,26 @@ import { TimestampFormatter } from './formatter';
  * Timestamp hover provider
  */
 export class TimestampHoverProvider implements vscode.HoverProvider {
+  private enabled: boolean = true;
+
+  public setEnabled(enabled: boolean): void {
+    this.enabled = enabled;
+  }
+
+  public isEnabled(): boolean {
+    return this.enabled;
+  }
+
   provideHover(
     document: vscode.TextDocument,
     position: vscode.Position,
     token: vscode.CancellationToken
   ): vscode.ProviderResult<vscode.Hover> {
+    // Check if the provider is enabled
+    if (!this.enabled) {
+      return null;
+    }
+
     // Get the word at cursor position
     const wordRange = document.getWordRangeAtPosition(position, /\d{10,13}/);
     if (!wordRange) {

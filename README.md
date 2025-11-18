@@ -14,6 +14,13 @@ A VSCode extension that automatically formats timestamps into readable time when
 1. Hover your mouse over any 10-13 digit timestamp
 2. Automatically displays formatted time information
 
+### Commands
+
+You can enable or disable the extension using these commands (press `Ctrl+Shift+P` or `Cmd+Shift+P` to open command palette):
+
+- **Enable Timestamp Formatter** - Enable timestamp hover formatting
+- **Disable Timestamp Formatter** - Disable timestamp hover formatting
+
 Example timestamps:
 - `1700000000` (seconds timestamp)
 - `1700000000000` (milliseconds timestamp)

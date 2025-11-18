@@ -7,13 +7,34 @@ import { TimestampHoverProvider } from './hoverProvider';
 export function activate(context: vscode.ExtensionContext) {
   console.log('Timestamp Hover Formatter is now active!');
 
+  // Create hover provider instance
+  const provider = new TimestampHoverProvider();
+
   // Register hover provider for all file types
   const hoverProvider = vscode.languages.registerHoverProvider(
     { scheme: '*', pattern: '**' },
-    new TimestampHoverProvider()
+    provider
   );
 
-  context.subscriptions.push(hoverProvider);
+  // Register enable command
+  const enableCommand = vscode.commands.registerCommand(
+    'timestampFormatter.enable',
+    () => {
+      provider.setEnabled(true);
+      vscode.window.showInformationMessage('Timestamp Formatter enabled');
+    }
+  );
+
+  // Register disable command
+  const disableCommand = vscode.commands.registerCommand(
+    'timestampFormatter.disable',
+    () => {
+      provider.setEnabled(false);
+      vscode.window.showInformationMessage('Timestamp Formatter disabled');
+    }
+  );
+
+  context.subscriptions.push(hoverProvider, enableCommand, disableCommand);
 }
 
 /**
