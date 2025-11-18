@@ -1,8 +1,27 @@
 {
-  "name": "timestamp-hover-formatter",
-  "displayName": "Timestamp Hover Formatter",
-  "description": "Format Unix timestamps on hover with configurable timezones",
+  "name": "hover-format-tools",
+  "displayName": "Hover Format Tools",
+  "description": "Hover to format timestamps and decode Base64 strings - support multiple timezones and configurable formats",
   "version": "0.0.1",
+  "publisher": "your-publisher-name",
+  "author": {
+    "name": "Your Name"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/timestamp-hover-formatter"
+  },
+  "keywords": [
+    "timestamp",
+    "formatter",
+    "unix",
+    "time",
+    "hover",
+    "base64",
+    "decoder",
+    "timezone"
+  ],
+  "license": "MIT",
   "engines": {
     "vscode": "^1.85.0"
   },
