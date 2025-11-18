@@ -25,9 +25,10 @@ export class Base64HoverProvider implements vscode.HoverProvider {
     }
 
     // Match potential Base64 strings (at least 8 characters)
+    // Note: The regex must match the entire word including padding
     const wordRange = document.getWordRangeAtPosition(
       position,
-      /[A-Za-z0-9+/]{8,}={0,2}/
+      /[A-Za-z0-9+/]{4,}={0,2}/
     );
 
     console.log(`Base64HoverProvider: found wordRange ${wordRange}`);
