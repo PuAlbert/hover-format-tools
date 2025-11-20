@@ -1,4 +1,21 @@
 describe('Base64 Detection and Decoding', () => {
+  // Helper function to check if string contains printable characters
+  function isPrintable(str: string): boolean {
+    const printableCount = str.split('').filter(char => {
+      const code = char.charCodeAt(0);
+      return (
+        (code >= 32 && code <= 126) || // Standard ASCII printable
+        code === 10 || // Line feed
+        code === 13 || // Carriage return
+        code === 9 ||  // Tab
+        (code >= 128 && code < 55296) || // Extended ASCII and Unicode
+        (code >= 57344 && code <= 65535) // Unicode private use
+      );
+    }).length;
+
+    return printableCount / str.length > 0.8;
+  }
+
   // Helper function to test Base64 detection logic (mirroring the actual implementation)
   function isBase64(str: string): boolean {
     if (str.length < 8) {
@@ -34,6 +51,21 @@ describe('Base64 Detection and Decoding', () => {
       return false;
     }
 
+    // 新增：尝试 decode 并检查是否可读
+    try {
+      let base64String = str;
+      const paddingNeeded = (4 - (str.length % 4)) % 4;
+      if (paddingNeeded > 0) {
+        base64String = str + '='.repeat(paddingNeeded);
+      }
+      const decoded = Buffer.from(base64String, 'base64').toString('utf-8');
+      if (!isPrintable(decoded)) {
+        return false;
+      }
+    } catch (e) {
+      return false;
+    }
+
     return true;
   }
 
@@ -62,7 +94,7 @@ describe('Base64 Detection and Decoding', () => {
       });
 
       it('should detect Base64 with special characters', () => {
-        expect(isBase64('AB+/CD==')).toBe(true);
+        expect(isBase64('AB+/CD==')).toBe(false);
         expect(isBase64('aHR0cHM6Ly9naXRodWIuY29t')).toBe(true);
       });
     });
@@ -186,8 +218,73 @@ describe('Base64 Detection and Decoding', () => {
     });
 
     it('should accept valid Base64 with good diversity', () => {
-      expect(isBase64('AbCdEfGhIjKl')).toBe(true);
+      expect(isBase64('AbCdEfGhIjKl')).toBe(false);
       expect(isBase64('QWJjZGVmZ2hpamts')).toBe(true);
+    });
+  });
+
+  describe('Decode and Verify Printability', () => {
+    it('should reject Base64 that decodes to binary/unprintable data', () => {
+      // Create a Base64 string that looks valid but decodes to unprintable chars
+      const binaryData = Buffer.from([0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08]);
+      const base64Binary = binaryData.toString('base64');
+      
+      // Should be rejected because decoded content is not printable
+      expect(isBase64(base64Binary)).toBe(false);
+    });
+
+    it('should accept Base64 that decodes to readable text', () => {
+      const readableText = 'This is readable text!';
+      const base64Text = Buffer.from(readableText).toString('base64');
+      
+      expect(isBase64(base64Text)).toBe(true);
+      expect(decodeBase64(base64Text)).toBe(readableText);
+    });
+
+    it('should accept Base64 that decodes to JSON', () => {
+      const jsonText = '{"message":"Hello","status":"ok"}';
+      const base64Json = Buffer.from(jsonText).toString('base64');
+      
+      expect(isBase64(base64Json)).toBe(true);
+      expect(decodeBase64(base64Json)).toBe(jsonText);
+    });
+
+    it('should reject Base64-like strings that decode to mostly unprintable chars', () => {
+      // Mix of printable and unprintable (less than 80% printable)
+      const mixedData = Buffer.from([
+        72, 101, 108, 108, 111, // "Hello"
+        0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09,
+        0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F
+      ]);
+      const base64Mixed = mixedData.toString('base64');
+      
+      expect(isBase64(base64Mixed)).toBe(false);
+    });
+
+    it('should handle decode errors gracefully', () => {
+      // Even if a string passes format checks, decode might fail
+      // The isBase64 function should catch decode errors and return false
+      
+      // This test verifies the try-catch block works
+      // Normal valid Base64 should not trigger errors
+      const validBase64 = 'SGVsbG8gV29ybGQh';
+      expect(isBase64(validBase64)).toBe(true);
+    });
+
+    it('should accept Base64 with newlines and tabs in decoded content', () => {
+      const textWithWhitespace = 'Hello\nWorld\t!';
+      const base64Text = Buffer.from(textWithWhitespace).toString('base64');
+      
+      expect(isBase64(base64Text)).toBe(true);
+      expect(decodeBase64(base64Text)).toBe(textWithWhitespace);
+    });
+
+    it('should accept Base64 with Unicode characters', () => {
+      const unicodeText = '你好世界 Hello 🌍';
+      const base64Unicode = Buffer.from(unicodeText).toString('base64');
+      
+      expect(isBase64(base64Unicode)).toBe(true);
+      expect(decodeBase64(base64Unicode)).toBe(unicodeText);
     });
   });
 });

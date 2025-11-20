@@ -98,7 +98,7 @@ export class Base64HoverProvider implements vscode.HoverProvider {
     const hasUpperCase = /[A-Z]/.test(str);
     const hasLowerCase = /[a-z]/.test(str);
     const hasSpecialChars = /[+/=]/.test(str);
-    
+
     // Must have either: uppercase+lowercase, or special Base64 chars, or both
     if (!((hasUpperCase && hasLowerCase) || hasSpecialChars)) {
       return false;
@@ -113,9 +113,24 @@ export class Base64HoverProvider implements vscode.HoverProvider {
     // Must have reasonable character diversity
     const uniqueChars = new Set(str.replace(/=/g, '')).size;
     const diversityRatio = uniqueChars / str.replace(/=/g, '').length;
-    
+
     // If very low diversity, likely not Base64
     if (diversityRatio < 0.3 || uniqueChars < 4) {
+      return false;
+    }
+
+    // 新增：尝试 decode 并检查是否可读
+    try {
+      let base64String = str;
+      const paddingNeeded = (4 - (str.length % 4)) % 4;
+      if (paddingNeeded > 0) {
+        base64String = str + '='.repeat(paddingNeeded);
+      }
+      const decoded = Buffer.from(base64String, 'base64').toString('utf-8');
+      if (!this.isPrintable(decoded)) {
+        return false;
+      }
+    } catch (e) {
       return false;
     }
 
