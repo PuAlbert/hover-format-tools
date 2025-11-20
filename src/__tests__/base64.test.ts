@@ -1,6 +1,11 @@
 describe('Base64 Detection and Decoding', () => {
   // Helper function to check if string contains printable characters
   function isPrintable(str: string): boolean {
+    // Reject if contains Unicode replacement character (indicates invalid UTF-8)
+    if (str.includes('\uFFFD')) {
+      return false;
+    }
+
     const printableCount = str.split('').filter(char => {
       const code = char.charCodeAt(0);
       return (
@@ -95,6 +100,7 @@ describe('Base64 Detection and Decoding', () => {
 
       it('should detect Base64 with special characters', () => {
         expect(isBase64('AB+/CD==')).toBe(false);
+        expect(isBase64('LocationID')).toBe(false);
         expect(isBase64('aHR0cHM6Ly9naXRodWIuY29t')).toBe(true);
       });
     });

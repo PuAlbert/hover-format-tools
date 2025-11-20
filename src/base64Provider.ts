@@ -142,6 +142,11 @@ export class Base64HoverProvider implements vscode.HoverProvider {
    * @param str Decoded string to check
    */
   private isPrintable(str: string): boolean {
+    // Reject if contains Unicode replacement character (indicates invalid UTF-8)
+    if (str.includes('\uFFFD')) {
+      return false;
+    }
+
     // Check if string contains mostly printable characters
     const printableCount = str.split('').filter(char => {
       const code = char.charCodeAt(0);
