@@ -1,0 +1,23 @@
+/* Tooltip styles */
+#hover-format-tooltip {
+  position: absolute;
+  z-index: 999999;
+  display: none;
+  padding: 12px;
+  background: #1e1e1e;
+  color: #d4d4d4;
+  border: 1px solid #454545;
+  border-radius: 6px;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-width: 500px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+}
+
+#hover-format-tooltip span {
+  font-weight: 500;
+}

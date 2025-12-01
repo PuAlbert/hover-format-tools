@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Base64 & Timestamp Test Page</title>
+  <style>
+    body {
+      font-family: 'Courier New', monospace;
+      padding: 20px;
+      line-height: 1.8;
+      background: #f5f5f5;
+    }
+    
+    .section {
+      background: white;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    h2 {
+      color: #333;
+      border-bottom: 2px solid #4CAF50;
+      padding-bottom: 10px;
+    }
+    
+    .test-item {
+      margin: 15px 0;
+      padding: 10px;
+      background: #f9f9f9;
+      border-left: 4px solid #4CAF50;
+    }
+    
+    .label {
+      font-weight: bold;
+      color: #666;
+      display: block;
+      margin-bottom: 5px;
+    }
+    
+    .value {
+      color: #333;
+      word-break: break-all;
+    }
+    
+    code {
+      background: #e8e8e8;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 14px;
+    }
+    
+    pre {
+      background: #2d2d2d;
+      color: #f8f8f8;
+      padding: 15px;
+      border-radius: 5px;
+      overflow-x: auto;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <h1>🧪 Hover Format Tools - Test Page</h1>
+  
+  <div class="section">
+    <h2>🔓 Base64 Examples (Select to decode)</h2>
+    
+    <div class="test-item">
+      <span class="label">Item ID:</span>
+      <code class="value">aXRlbToyNjU3NzI2</code>
+    </div>
+    
+    <div class="test-item">
+      <span class="label">Ingredient ID:</span>
+      <code class="value">aW5ncmVkaWVudDoyNTgzNjAy</code>
+    </div>
+    
+    <div class="test-item">
+      <span class="label">Modifier ID:</span>
+      <code class="value">bW9kaWZpZXI6NzEwODIz</code>
+    </div>
+    
+    <div class="test-item">
+      <span class="label">Payment Option:</span>
+      <code class="value">aG91c2VBY2NvdW50OjE3NTI2NQ==</code>
+    </div>
+    
+    <div class="test-item">
+      <span class="label">Room ID:</span>
+      <code class="value">cm9vbToxNjYzNjM=</code>
+    </div>
+    
+    <div class="test-item">
+      <span class="label">Simple Text:</span>
+      <code class="value">SGVsbG8gV29ybGQh</code>
+      <span style="color: #999; margin-left: 10px;">(Hello World!)</span>
+    </div>
+    
+    <div class="test-item">
+      <span class="label">JWT Header:</span>
+      <code class="value">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</code>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>🕒 Timestamp Examples (Hover to format)</h2>
+    
+    <div class="test-item">
+      <span class="label">Current timestamp (seconds):</span>
+      <code class="value">1733011200</code>
+    </div>
+    
+    <div class="test-item">
+      <span class="label">Current timestamp (milliseconds):</span>
+      <code class="value">1733011200000</code>
+    </div>
+    
+    <div class="test-item">
+      <span class="label">Order created at:</span>
+      <code class="value">1700000000</code>
+    </div>
+    
+    <div class="test-item">
+      <span class="label">Event timestamp:</span>
+      <code class="value">1609459200000</code>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>📝 Instructions</h2>
+    <ul>
+      <li><strong>Base64 Decoding:</strong> Select any Base64 string (like <code>aXRlbToyNjU3NzI2</code>) to see the decoded value</li>
+      <li><strong>Timestamp Formatting:</strong> Hover over any timestamp number (like <code>1733011200</code>) to see formatted dates</li>
+      <li>Open Console (F12) to see debug logs</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>🔍 More Base64 Test Cases</h2>
+    
+    <p>URL: <code>aHR0cHM6Ly9naXRodWIuY29t</code></p>
+    <p>Email: <code>dXNlckBleGFtcGxlLmNvbQ==</code></p>
+    <p>JSON: <code>eyJuYW1lIjoiSm9obiIsImFnZSI6MzB9</code></p>
+    <p>Long text: <code>VGhpcyBpcyBhIGxvbmdlciBCYXNlNjQgZW5jb2RlZCBzdHJpbmcgdG8gdGVzdCB0aGUgZnVuY3Rpb25hbGl0eQ==</code></p>
+  </div>
+
+</body>
+</html>
