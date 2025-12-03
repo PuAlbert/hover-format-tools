@@ -3,8 +3,8 @@ name: Build and Release VSIX
 on:
   push:
     tags:
-      - 'v*'  # 当推送 v 开头的标签时触发，如 v0.0.1
-  workflow_dispatch:  # 允许手动触发
+      - 'v*' 
+  workflow_dispatch: 
 
 jobs:
   build:
